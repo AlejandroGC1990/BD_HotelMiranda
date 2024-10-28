@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import UserModel from './models/userModels.js';
-import { fakeUsers } from './data/fake/fakeUsers';
+import { fakeUsers } from '../src/data/fake/fakeUsers.js';
 import dotenv from 'dotenv';
 
 dotenv.config();

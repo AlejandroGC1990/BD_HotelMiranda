@@ -1,0 +1,31 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createRoomTable = void 0;
+const db_1 = require("../db");
+const createRoomTable = () => __awaiter(void 0, void 0, void 0, function* () {
+    const connection = yield (0, db_1.connectDB)();
+    yield connection.execute(`
+
+    CREATE TABLE IF NOT EXISTS Room (
+      room_id INT PRIMARY KEY AUTO_INCREMENT,
+      room_number INT NOT NULL,
+      room_type VARCHAR(255) NOT NULL,
+      room_facilities TEXT NOT NULL,
+      room_price DECIMAL(10, 2) NOT NULL,
+      offer_price DECIMAL(10, 2),
+      room_status VARCHAR(50) NOT NULL,
+      room_picture VARCHAR(255) NOT NULL,
+      room_bedType VARCHAR(50) NOT NULL
+    );
+  `);
+});
+exports.createRoomTable = createRoomTable;

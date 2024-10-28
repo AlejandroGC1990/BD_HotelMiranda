@@ -19,4 +19,8 @@
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
   "allowImportingTsExtensions": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/db/createTables.js"
+  }
 }
