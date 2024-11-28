@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "start": "nodemon --exec ts-node index.ts"
+    "start": "nodemon --exec ts-node index.ts",
+    "seed": "npx ts-node src/db/createTables.ts"
   },
   "keywords": [],
   "author": "",

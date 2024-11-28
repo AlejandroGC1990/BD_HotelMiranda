@@ -1,26 +1,28 @@
-import { createContactTable } from './tables/contactTable';
-import { createRoomTable } from './tables/roomTable';
+// import { createTableUser } from 'interfaces/user';
+import { connectDB } from './db';
+import { createTableContact } from 'interfaces/contact';
+import { createTableRoom } from 'interfaces/room';
+import { createTableBooking } from 'interfaces/booking';
+import { createTableUser } from 'interfaces/user';
 
 //! USAR node dist/src/database/createTables.js UNA VEZ PARA
 //! CREAR LAS TABLAS EN LA BASE DE DATOS
 
+const createTable = async () =>{
+  const connection = await connectDB();
 
-const createTables = async () => {
   try {
-    await createContactTable();
-    console.log('Tabla Contact creada correctamente');
+      await connection.execute(createTableUser)
+      await connection.execute(createTableContact)
+      await connection.execute(createTableRoom)
+      await connection.execute(createTableBooking)
 
-    await createRoomTable();
-    console.log('Tabla Room creada correctamente');
-    
-    // await createUsersTable();
-    // console.log('Tabla usuarios creada correctamente');
-    
-    // await createBookingTable();
-    // console.log('Tabla Booking creada correctamente');
+      console.log('Create Table SuccessFully');
   } catch (error) {
-    console.error('Error al crear las tablas:', error);
+      console.log('Error creating tables', error);
+  } finally {
+      connection.end();
   }
 };
 
-createTables();
+createTable().catch(err => console.error('error creating tables:', err));

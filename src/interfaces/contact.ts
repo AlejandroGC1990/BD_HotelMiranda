@@ -16,3 +16,15 @@ export interface Contact {
     guest_orderDate: string;                  
     guest_room_state: string;         
 }
+
+export const createTableContact = 
+`CREATE TABLE IF NOT EXISTS contacts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  date DATE NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50),
+  subject VARCHAR(255),
+  comment TEXT,
+  archived BOOLEAN NOT NULL DEFAULT FALSE
+)`;

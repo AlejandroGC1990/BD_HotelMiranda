@@ -1,13 +1,15 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 // import mongoose from 'mongoose';
 // import UserModel from './models/userModels';
 // import { fakeUsers } from '../src/data/fake/fakeUsers';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 // //? URI para conectarse a la base de datos de MongoDB
 // const uri = "MONGO_URI";
-
 // //? Función para guardar datos ficticios de usuarios
 // const saveFakeUsers = async () => {
 //     for (let i = 0; i < 10; i++) {
@@ -16,14 +18,12 @@ dotenv.config();
 //         await newUser.save(); // Guardar el usuario en la base de datos
 //     }
 // };
-
 // //? Función principal para iniciar el seed
 // export async function seedDB() {
 //     await dbConnection(); // Conectamos a la base de datos
 //     await saveFakeUsers(); // Guardamos los usuarios ficticios
 //     mongoose.connection.close(); // Cerramos la conexión después de completar el proceso
 // }
-
 // //? Función para conectar a MongoDB
 // async function dbConnection() {
 //     try {
@@ -34,7 +34,5 @@ dotenv.config();
 //         await mongoose.disconnect(); // Desconectar en caso de fallo
 //     }
 // }
-
 // //? Ejecutamos la función para iniciar el proceso de seed
 // seedDB();
-

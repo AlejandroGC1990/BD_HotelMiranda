@@ -14,3 +14,18 @@ export interface Booking {
     room_type: string;               
     room_status: 'Check In' | 'Check Out' | 'In Progress';  
 }
+
+export const createTableBooking= 
+ ` CREATE TABLE IF NOT EXISTS bookings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  guest VARCHAR(255),
+  picture VARCHAR(255),
+  order_date DATE NOT NULL,
+  check_in DATE NOT NULL,
+  check_out DATE NOT NULL,
+  discount DECIMAL(5, 2),
+  notes JSON,
+  room_id INT,
+  status ENUM('Pending', 'Booked', 'Cancelled', 'Refund') NOT NULL,
+  FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL
+)`;

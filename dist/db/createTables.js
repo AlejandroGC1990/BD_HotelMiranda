@@ -9,23 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const contactTable_1 = require("./tables/contactTable");
-const roomTable_1 = require("./tables/roomTable");
+// import { createTableUser } from 'interfaces/user';
+const db_1 = require("./db");
+const contact_1 = require("interfaces/contact");
+const room_1 = require("interfaces/room");
+const booking_1 = require("interfaces/booking");
+const user_1 = require("interfaces/user");
 //! USAR node dist/src/database/createTables.js UNA VEZ PARA
 //! CREAR LAS TABLAS EN LA BASE DE DATOS
-const createTables = () => __awaiter(void 0, void 0, void 0, function* () {
+const createTable = () => __awaiter(void 0, void 0, void 0, function* () {
+    const connection = yield (0, db_1.connectDB)();
     try {
-        yield (0, contactTable_1.createContactTable)();
-        console.log('Tabla Contact creada correctamente');
-        yield (0, roomTable_1.createRoomTable)();
-        console.log('Tabla Room creada correctamente');
-        // await createUsersTable();
-        // console.log('Tabla usuarios creada correctamente');
-        // await createBookingTable();
-        // console.log('Tabla Booking creada correctamente');
+        yield connection.execute(user_1.createTableUser);
+        yield connection.execute(contact_1.createTableContact);
+        yield connection.execute(room_1.createTableRoom);
+        yield connection.execute(booking_1.createTableBooking);
+        console.log('Create Table SuccessFully');
     }
     catch (error) {
-        console.error('Error al crear las tablas:', error);
+        console.log('Error creating tables', error);
+    }
+    finally {
+        connection.end();
     }
 });
-createTables();
+createTable().catch(err => console.error('error creating tables:', err));
